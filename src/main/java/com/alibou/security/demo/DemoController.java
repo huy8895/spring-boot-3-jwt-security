@@ -13,6 +13,11 @@ public class DemoController {
 
   @GetMapping
   public ResponseEntity<String> sayHello() {
+    return ResponseEntity.ok("Hello from unsecured endpoint");
+  }
+
+  @GetMapping("/secured")
+  public ResponseEntity<String> sayHelloSecured() {
     return ResponseEntity.ok("Hello from secured endpoint");
   }
 
