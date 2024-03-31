@@ -1,7 +1,9 @@
 package com.alibou.security.demo;
 
 import io.swagger.v3.oas.annotations.Hidden;
+import java.util.Map;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,8 +19,9 @@ public class DemoController {
   }
 
   @GetMapping("/secured")
-  public ResponseEntity<String> sayHelloSecured() {
-    return ResponseEntity.ok("Hello from secured endpoint");
+  public Object sayHelloSecured(Authentication authentication) {
+    return Map.of("user", authentication.getName(),
+        "authorities",authentication.getAuthorities());
   }
 
 }
